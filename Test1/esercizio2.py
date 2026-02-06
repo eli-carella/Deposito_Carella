@@ -12,6 +12,7 @@ def conta_vocali(testo:str):
     num = 0
     #ciclo for su lettere in minuscolo della parola
     for lettera in testo.lower():
+        #se la lettera è nell'elenco delle vocali incremento il contatore
         if lettera in vocali:
             num += 1
 
