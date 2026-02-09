@@ -1,3 +1,12 @@
+'''
+1. Esercizio Base: Indovina il numero
+Descrizione: Scrivi un programma che genera un numero casuale
+tra 1 e 100 (inclusi). L'utente deve indovinare quale numero è
+stato generato. Dopo ogni tentativo, il programma dovrebbe
+dire all'utente se il numero da indovinare è più alto o più
+basso rispetto al numero inserito. Il gioco termina quando
+l'utente indovina il numero o decide di uscire.
+'''
 import random 
 #funzioe che confronta numero segreto e tentativo
 def confronto(a:int, b:int):
