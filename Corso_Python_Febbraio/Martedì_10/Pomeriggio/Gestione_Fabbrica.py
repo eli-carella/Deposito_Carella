@@ -43,3 +43,44 @@ class Abbigliamento(Prodotto):
         self.materiale = materiale # attributo aggiuntivo
 
 
+class Fabbrica:
+    def __init__(self):
+        self.inventario = {} # dizionario di prodotti
+
+    def aggiungi_prodotto(self, prodotto, quantità): 
+        #controllo se è già presente nell'inventario ovvero nel dizionario,
+        #  se presente aggiorna quanità se ne no aggiungilo
+        if prodotto.nome in self.inventario:
+            self.inventario[prodotto.nome]["quantità"] += quantità
+        else:
+            self.inventario[prodotto.nome] = {
+                "prodotto": prodotto,
+                "quantità": quantità
+            }
+
+    # funzione vendi prodotto
+    def vendi_prodotto(self, nome_prodotto, quantità):
+        #se il nome non è in inventario oppure è di quantità insufficiente 
+        # esci dalla funzione con None
+        #altrimenti scala la quantità passata nell'inventario e calcola il profitto
+        if nome_prodotto not in self.inventario:
+            print("Prodotto non presente in inventario.")
+            return
+        elif self.inventario[nome_prodotto]["quantità"] < quantità:
+            print("Quantità insufficiente in magazzino.")
+            return
+        else:
+            prodotto = self.inventario[nome_prodotto]["prodotto"]
+            self.inventario[nome_prodotto]["quantità"] -= quantità
+
+            profitto = prodotto.calcola_profitto() * quantità
+            print(f"Venduti {quantità} {nome_prodotto}. Profitto: {profitto} €")
+
+    # calcola resi prodotto 
+    def resi_prodotto(self, nome_prodotto, quantità):
+        #se prodotto è nell'inventario aggiungi la quantità passata 
+        if nome_prodotto in self.inventario:
+            self.inventario[nome_prodotto]["quantità"] += quantità
+        else:
+            print("Prodotto non presente in inventario.")
+
