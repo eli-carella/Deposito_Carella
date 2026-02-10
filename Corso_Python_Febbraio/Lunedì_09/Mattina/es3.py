@@ -21,7 +21,7 @@ class Biblioteca:
         self.libri = []
 
     #metodo per aggiunere oggetto libro in list libria 
-    def aggiungi_libro(self, libro):
+    def aggiungi_libro(self, libro:Libro):
         self.libri.append(libro)
 
     #metodo per stampare i libri disponibili tramite metodo descrizione dell'oggetto libri 
@@ -33,15 +33,15 @@ class Biblioteca:
                 print(libro.descrizione())
 
 #oggetto biblioteca
-biblioteca = Biblioteca()
+biblioteca_OBJ = Biblioteca()
 
 #oggetto libri
-libro1 = Libro("Il piccolo principe", "Antoine de Saint-Exupéry", 96)
-libro2 = Libro("Divina Commedia", "Dante Alighieri", 700)
+libro1_OBJ = Libro("Il piccolo principe", "Antoine de Saint-Exupéry", 96)
+libro2_OBJ = Libro("Divina Commedia", "Dante Alighieri", 700)
 
 #metodi aggiungi libri
-biblioteca.aggiungi_libro(libro1)
-biblioteca.aggiungi_libro(libro2)
+biblioteca_OBJ.aggiungi_libro(libro1_OBJ)
+biblioteca_OBJ.aggiungi_libro(libro2_OBJ)
 
 #metodo stampa tutti i libri che ci sono
-biblioteca.stampa_libri()
+biblioteca_OBJ.stampa_libri()
