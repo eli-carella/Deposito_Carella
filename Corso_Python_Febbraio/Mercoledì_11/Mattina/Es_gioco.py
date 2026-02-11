@@ -23,10 +23,12 @@ import random
 # Classe base
 class MembroSquadra:
     def __init__(self, nome, eta):
+        # costruttore con attributi nome ed età
         self.nome = nome
         self.eta = eta
 
     def descrivi(self):
+        #metodo stampa caratteristiche
         return f"{self.nome}, {self.eta} anni, membro della squadra."
     
 
@@ -37,14 +39,16 @@ class Giocatore(MembroSquadra):
         super().__init__(nome, eta)
         self.ruolo = ruolo
         self.numero_maglia = numero_maglia
-        self.abilita = abilita  # valore numerico per simulare la forza del giocatore da 1 a 10
+        self.abilita = abilita  # valore numerico per simulare il livello del giocatore da 1 a 10
 
     def descrivi(self):
-        return f"{self.nome} (#{self.numero_maglia}) - {self.ruolo}, {self.eta} anni."
-
+        #eredita descrivi da classe padre e fa override
+        base = super().descrivi()
+        return f"{base}, Giocatore {self.ruolo} con maglia #{self.numero_maglia}"
+        
     def gioca_partita(self):
         #Simula quanto bene gioca un calciatore in una partita e restituisce un numero che rappresenta la sua prestazione.
-        # aggiunge ad abilità numero casuale che rappresenta la forma del giorno del giocatore:
+        # aggiunge ad abilità numero casuale che rappresenta la forza del giorno del giocatore:
         abilita_del_giorno = random.randint(1, 10)
         prestazione = abilita_del_giorno + self.abilita
         print(f"{self.nome} gioca la partita con prestazione {prestazione}")
@@ -53,18 +57,17 @@ class Giocatore(MembroSquadra):
 # Classe Allenatore
 class Allenatore(MembroSquadra):
     def __init__(self, nome, eta, anni_di_esperienza):
-        #eredita da mebro squadra e aggiunge attributo anni di esperienza
+        #eredita da mebrosquadra e aggiunge attributo anni di esperienza
         super().__init__(nome, eta)
         self.anni_di_esperienza = anni_di_esperienza
 
     def dirige_allenamento(self):
-        print(f"L'allenatore {self.nome} dirige l'allenamento con {self.anni_di_esperienza} anni di esperienza.")
-
-    def descrivi(self):
-        return f"Allenatore {self.nome}, {self.anni_di_esperienza} anni di esperienza."
+        #eredita descrivi da classe padre e fa override
+        descrizione_base = super().descrivi()
+        return f"{descrizione_base}, dirige l'allenamento con {self.anni_esperienza} anni di esperienza."
     
     def bonus(self):
-        return self.anni_esperienza  # bonus alla squadra inm base ad anni di esperienza
+        return self.anni_esperienza  # bonus alla squadra in base ad anni di esperienza
     
 
 # Classe Assistente
@@ -75,15 +78,14 @@ class Assistente(MembroSquadra):
         self.specializzazione = specializzazione
 
     def supporta_team(self):
-        print(f"{self.nome} supporta il team come {self.specializzazione}.")
-
-    def descrivi(self):
-        return f"Assistente {self.nome}, specializzato in {self.specializzazione}."
-    
+        #eredita descrivi da classe padre e fa override
+        descrizione_base = super().descrivi()
+        return f"{descrizione_base}, supporta il team come {self.specializzazione}."
+        
     def bonus(self):
         return 5  # bonus fisso alla squadra
     
-    
+#classe squadra
 class Squadra:
     def __init__(self, nome, max_giocatori):
         self.nome = nome
