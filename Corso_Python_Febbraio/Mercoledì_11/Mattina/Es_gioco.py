@@ -83,25 +83,6 @@ class Assistente(MembroSquadra):
     def bonus(self):
         return 5  # bonus fisso alla squadra
     
-
-class Squadra:
-    def __init__(self, nome, max_giocatori):
-        self.nome = nome
-        self.max_giocatori = max_giocatori
-        self.giocatori = []
-
-    def aggiungi_giocatore(self, giocatore):
-        if len(self.giocatori) < self.max_giocatori:
-            self.giocatori.append(giocatore)
-            print("Giocatore aggiunto!")
-        else:
-            print("Numero massimo di giocatori raggiunto!")
-
-    def forza_totale(self):
-        totale = 0
-        for g in self.giocatori:
-            totale += g.gioca_partita()
-        return totale
     
 class Squadra:
     def __init__(self, nome, max_giocatori):
