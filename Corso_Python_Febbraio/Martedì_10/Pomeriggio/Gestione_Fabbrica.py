@@ -25,7 +25,6 @@ class Prodotto:
         self.costo_produzione = costo_produzione
         self.prezzo_vendita = prezzo_vendita
 
-    
     def calcola_profitto(self):
         #calcolo profitto
         return self.prezzo_vendita - self.costo_produzione
@@ -39,7 +38,7 @@ class Elettronica(Prodotto):
 #classe figlia Abbibliamento che eredita da prodotto
 class Abbigliamento(Prodotto):
     def __init__(self, nome, costo_produzione, prezzo_vendita, materiale):
-        super().__init__(nome, costo_produzione, prezzo_vendita) #costruttore padre 
+        super().__init__(nome, costo_produzione, prezzo_vendita) #costruttore padre
         self.materiale = materiale # attributo aggiuntivo
 
 
@@ -49,7 +48,7 @@ class Fabbrica:
 
     def aggiungi_prodotto(self, prodotto, quantità): 
         #controllo se è già presente nell'inventario ovvero nel dizionario,
-        #  se presente aggiorna quanità se ne no aggiungilo
+        #  se presente aggiorna solo quanità se ne no aggiungilo
         if prodotto.nome in self.inventario:
             self.inventario[prodotto.nome]["quantità"] += quantità
         else:
@@ -78,9 +77,91 @@ class Fabbrica:
 
     # calcola resi prodotto 
     def resi_prodotto(self, nome_prodotto, quantità):
-        #se prodotto è nell'inventario aggiungi la quantità passata 
+        #se prodotto è nell'inventario aggiungi la quantità passata
         if nome_prodotto in self.inventario:
             self.inventario[nome_prodotto]["quantità"] += quantità
         else:
             print("Prodotto non presente in inventario.")
 
+
+#creo oggetto fabbrica
+fabbrica = Fabbrica()
+
+# oggetti di Prodotti 
+telefono = Elettronica("Smartphone", 300, 600, 2)
+maglietta = Abbigliamento("T-shirt", 5, 20, "Cotone")
+
+#aggiunta a fabbrica
+fabbrica.aggiungi_prodotto(telefono, 10)
+fabbrica.aggiungi_prodotto(maglietta, 50)
+
+# menu di scelta con 4 azioni
+while True:
+    print("\n--- MENU FABBRICA ---")
+    print("1. Aggiungi prodotto")
+    print("2. Vendi prodotto")
+    print("3. Reso prodotto")
+    print("4. Visualizza inventario")
+    print("0. Esci")
+
+    scelta = input("Seleziona un'opzione: ")
+
+    # aggiunta prodotti
+    if scelta == "1":
+        nome = input("Nome prodotto: ")
+        quantita = int(input("Quantità: "))
+
+        if nome in fabbrica.inventario:
+            prodotto = fabbrica.inventario[nome]["prodotto"]
+            fabbrica.aggiungi_prodotto(prodotto, quantita)
+            print("Quantità aggiornata.")
+        else:
+            print("Tipo prodotto:")
+            print("1. Elettronica")
+            print("2. Abbigliamento")
+            tipo = input("Scelta: ")
+
+            costo = float(input("Costo di produzione: "))
+            prezzo = float(input("Prezzo di vendita: "))
+
+            if tipo == "1":
+                garanzia = int(input("Anni di garanzia: "))
+                prodotto = Elettronica(nome, costo, prezzo, garanzia)
+
+            elif tipo == "2":
+                materiale = input("Materiale: ")
+                prodotto = Abbigliamento(nome, costo, prezzo, materiale)
+
+            else:
+                print("Tipo di prodotto non valido.")
+                continue
+
+            fabbrica.aggiungi_prodotto(prodotto, quantita)
+            print("Nuovo prodotto aggiunto all'inventario.")
+
+    # vendita prodotti
+    elif scelta == "2":
+        nome = input("Nome prodotto da vendere: ")
+        quantita = int(input("Quantità da vendere: "))
+        fabbrica.vendi_prodotto(nome, quantita)
+
+    # reso prodotto
+    elif scelta == "3":
+        nome = input("Nome prodotto restituito: ")
+        quantita = int(input("Quantità resa: "))
+        fabbrica.resi_prodotto(nome, quantita)
+        print("Reso registrato.")
+
+    # stampa inventario
+    elif scelta == "4":
+        print("\n--- INVENTARIO ---")
+        for nome, dati in fabbrica.inventario.items():
+            print(f"{nome}: {dati['quantità']} pezzi")
+
+    # uscita
+    elif scelta == "0":
+        print("Uscita dal programma.")
+        break
+
+    else:
+        print("Scelta non valida.")
