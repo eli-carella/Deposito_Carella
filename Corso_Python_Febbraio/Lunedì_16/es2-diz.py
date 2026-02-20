@@ -45,3 +45,5 @@ elif scelta_finale == "tutti":
     for nome in diz_studenti:
         print(f"Nome: {nome}")
         print(f"Voti: {diz_studenti[nome]['voti']}")
+
+
