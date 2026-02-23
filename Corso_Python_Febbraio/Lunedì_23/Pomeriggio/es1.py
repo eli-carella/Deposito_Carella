@@ -19,3 +19,4 @@ print(f'Tipo di dato {data.dtype}')
 data_float = data.astype(float)
 print(f'Tipo di dato nuovo convertito {data_float.dtype}')
 print(f'Forma array: {data_float.shape}')
+
