@@ -28,7 +28,7 @@ print(data[-5:])
 print(data[5:15])
 #ogni 3 
 print(data[::3])
-#riassegna 88 dal 5 al 10 escluso
+#riassegna 99 dal 5 al 10 escluso
 data[5:10]=99
 #stampa array modificato
 print(data)
