@@ -21,8 +21,7 @@ print(f"matrice inziale {data}")
 data_new=data[1:5, 1:5]
 print(f"Sottomatrice {data_new}")
 
-data_inv = data_new[::-1]
-print(data_inv)
+data_inv = data_new[::-1, :]
 print(f"Matrice invertita {data_inv}")
 
 diag=np.diag(data_inv)
