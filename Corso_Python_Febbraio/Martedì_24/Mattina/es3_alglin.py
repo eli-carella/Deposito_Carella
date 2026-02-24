@@ -12,7 +12,7 @@ import numpy as np
 
 arr = np.random.randint(10,51, 16)
 matr=arr.reshape(4,4)
-
+print('\nMatrice:\n',matr)
 
 # Indici da selezionare
 righe = [0, 1, 2, 3]
@@ -22,8 +22,10 @@ colonne = [1, 3, 2, 0]
 elementi_selezionati = matr[righe, colonne]
 print("\nElementi selezionati agli indici (0,1), (1,3), (2,2), (3,0):", elementi_selezionati)
 
-# Selezionare e stampare tutte le righe dispari
-righe_dispari = matr[1::2]
+# Selezionare e stampare tutte le righe dispari con fancy indexing
+indici = np.arange(1, matr.shape[0], 2)
+righe_dispari = matr[indici, :]
+
 print("\nRighe dispari:\n", righe_dispari)
 
 # Modificare gli elementi selezionati aggiungendo 10
