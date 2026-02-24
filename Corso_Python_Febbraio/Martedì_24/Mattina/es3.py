@@ -10,6 +10,7 @@ tra 0 e 1.
 8) Rendi ripetibile il processo complessivo
 9) Chiedi se si vuole sovrascrivere il TXT o no.
 '''
+
 import numpy as np
 #array tra 0-10 equidistante di 50 posti
 arr1 = np.linspace(0,10, 50)
