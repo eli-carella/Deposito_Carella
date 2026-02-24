@@ -8,6 +8,12 @@ Le operazioni disponibili includono, ogni volta che il sistema conclude un calco
 3. Trasporre la matrice e stamparla.
 4. Calcolare e stampare la somma di tutti gli elementi della matrice.
 5. Uscire dal programma o ripetere .
+
+Parte DUE: Andare a specializzare per aggiungere nuove operazioni:
+1. Moltiplicazione Element-wise con un'altra Matrice: L'utente può scegliere di creare una
+seconda matrice delle stesse dimensioni della prima e moltiplicarle elemento perelemento e stampare il risultato.
+2. Calcolo della Media degli Elementi della Matrice: Calcolare e stampare la media di tutti gli elementi della matrice.
+EXTRA: Determinante della Matrice: Calcolare e stampare il determinante della matrice (solo se la matrice è quadrata).
 '''
 import numpy as np
 
