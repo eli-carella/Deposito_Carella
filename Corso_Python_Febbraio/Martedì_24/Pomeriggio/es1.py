@@ -54,6 +54,41 @@ def somma_elementi(matrice):
     print("\nSomma di tutti gli elementi:", somma)
     salva_su_file("Somma elementi: " + str(somma))
 
+def moltiplicazione_matrici(matrice):
+    righe, colonne = matrice.shape
+    
+    print("\nCreazione seconda matrice delle stesse dimensioni.")
+    seconda = np.random.randint(0, 100, size=(righe, colonne))
+    
+    print("\nSeconda matrice:\n", seconda)
+    
+    risultato = matrice * seconda
+    
+    print("\nRisultato moltiplicazione element-wise:\n", risultato)
+    
+    salva_su_file(
+        "Seconda matrice:\n" + str(seconda) +
+        "\n\nRisultato moltiplicazione element-wise:\n" + str(risultato)
+    )
+
+#calcolo media matrice
+def calcolo_media(matrice):
+    media = np.mean(matrice)
+    print("\nMedia:", media)
+    salva_su_file("Media: " + str(media))
+
+#calcolo determinante
+def calcolo_determinante(matrice):
+
+    #controllo matrice quadrata
+    if matrice.shape[0] != matrice.shape[1]:
+        print("Errore: La matrice deve essere quadrata!")
+    else:
+        det = np.linalg.det(matrice)
+        print("\nDeterminante:", det)
+        salva_su_file("Determinante: " + str(det))
+
+
 matrice = None
     
 while True:
@@ -62,29 +97,55 @@ while True:
     print("2. Estrarre sottomatrice centrale")
     print("3. Trasporre la matrice")
     print("4. Somma di tutti gli elementi")
-    print("5. Uscire")
+    print("5: Moltiplicazione con una seconda matrice")
+    print("6: Calcolo media")
+    print("7: Calcolo determinante")
+    print("8. Uscire")
     
     scelta = input("Scegli un'opzione: ")
     
     if scelta == "1":
         matrice = crea_matrice()
+
     elif scelta == "2":
         if matrice is not None:
             sottomatrice_centrale(matrice)
         else:
             print("Devi prima creare una matrice.")
+
     elif scelta == "3":
         if matrice is not None:
             trasponi_matrice(matrice)
         else:
             print("Devi prima creare una matrice.")
+
     elif scelta == "4":
         if matrice is not None:
             somma_elementi(matrice)
         else:
             print("Devi prima creare una matrice.")
+
     elif scelta == "5":
+        if matrice is not None:
+            moltiplicazione_matrici(matrice)
+        else:
+            print("Devi prima creare una matrice.")
+
+    elif scelta == "6":
+        if matrice is not None:
+            calcolo_media(matrice)
+        else:
+            print("Devi prima creare una matrice.")
+
+    elif scelta == "7":
+        if matrice is not None:
+            calcolo_determinante(matrice)
+        else:
+            print("Devi prima creare una matrice.")
+
+    elif scelta == "8":
         print("Uscita dal programma.")
         break
+
     else:
         print("Scelta non valida. Riprova.")
