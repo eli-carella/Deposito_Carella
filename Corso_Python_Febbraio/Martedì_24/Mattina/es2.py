@@ -11,9 +11,12 @@ matrici.
 
 import numpy as np
 arr =np.linspace(0,1, 12)
+#modifica forma in matrice 3X4
 matr1 = np.reshape(arr, (3,4))
 print(matr1)
 
+#crea matrice 3X4 con numeri random tra 0 e 1
 matr2 = np.random.rand(3,4)
+#calcola somme
 print('Somma Matrice 1', np.sum(matr1))
 print('Somma Matrice 2', np.sum(matr2))
