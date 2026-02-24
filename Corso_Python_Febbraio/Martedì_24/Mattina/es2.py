@@ -8,10 +8,11 @@ a 0 e 1 usando linspace.
 4.Calcola e stampa la somma degli elementi di entrambe le
 matrici.
 '''
+
 import numpy as np
 arr =np.linspace(0,1, 12)
 matr1 = np.reshape(arr, (3,4))
-print(arr)
+print(matr1)
 
 matr2 = np.random.rand(3,4)
 print('Somma Matrice 1', np.sum(matr1))
