@@ -41,7 +41,7 @@ print("\nDataframe\n")
 print(df)
 
 # Creazione della tabella pivot
-pivot_table = df.pivot_table(index='Prodotto', columns='Città', values='Vendite', aggfunc='sum')
+pivot_table = df.pivot_table(index='Prodotto', columns='Città', values='Vendite', aggfunc='mean')
 print("\nPivot table\n")
 print(pivot_table)
 
