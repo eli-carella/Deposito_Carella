@@ -18,11 +18,15 @@ anni: Giovane, 19-65 anni: Adulto, oltre 65 anni: Senior).
 import pandas as pd
 file_path='dataset.csv'
 df = pd.read_csv(file_path)
+#stampa prime 5 e ultime 5
 print(df.head())
 print(df[-5:])
 
-
+#stampa dtype di ogni colonna
 print(df.dtypes)
+print(df['Nome'].dtype)
+
+#stampa media,mediana, 
 print('Media età: ', df['Età'].mean())
 print('Mediana età: ', df['Età'].median())
 print('Std età: ', df['Età'].std())
@@ -38,7 +42,7 @@ df['Età'].fillna(df['Età'].median(), inplace=True)
 df['Salario'].fillna(df['Salario'].median(), inplace=True)
 
 
-# Aggiungiamo una nuova colonna con divisione in 3 categorie
+# funzione che divide in 3 categorie
 def categoria_eta(eta):
     if eta <= 18:
         return "Giovane"
@@ -47,7 +51,7 @@ def categoria_eta(eta):
     else:
         return "Senior"
 
-# Crea la nuova colonna
+# Crea la nuova colonna applicando la funzione
 df["Categoria Età"] = df["Età"].apply(categoria_eta)
 
 # salva su file csv index=False per evitare di salvare la colonna dell'indice
