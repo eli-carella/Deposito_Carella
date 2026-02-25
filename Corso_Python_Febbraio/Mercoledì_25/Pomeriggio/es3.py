@@ -17,7 +17,7 @@ start = np.datetime64('2026-02-01')
 end = np.datetime64('2026-03-01')
 
 dates = np.arange(start, end, dtype='datetime64[D]')
-print(dates)
+#print(dates)
 
 citta = np.array(["Roma", "Milano", "Napoli"])
 prodotti = np.array(["Laptop", "Smartphone", "Tablet"])
@@ -37,10 +37,14 @@ dataset_diz = {
 }
 
 df = pd.DataFrame(dataset_diz)
+print("\nDataframe\n")
 print(df)
 
 # Creazione della tabella pivot
 pivot_table = df.pivot_table(index='Prodotto', columns='Città', values='Vendite', aggfunc='sum')
+print("\nPivot table\n")
+print(pivot_table)
 
 grouped_df  = df.groupby("Prodotto")["Vendite"].sum()
+print("\nDataframe grouped\n")
 print(grouped_df)
