@@ -41,8 +41,9 @@ nvisitatori = np.random.normal(2000, 500, num_giorni)
 incremento = 0.1  # +10% nell'anno
 
 # Fattore giorno per giorno da 1 a 1+incremento
-fattore = 1 + incremento * (np.arange(num_giorni)/num_giorni)
-nvisitatori_trend = nvisitatori * fattore
+#fattore = 1 + incremento * (np.arange(num_giorni)/num_giorni)
+fattore = (1 + incremento) ** (giorni / len(giorni))
+nvisitatori = nvisitatori * fattore
 
 '''df=pd.DataFrame({
     'giorni': giorni,
