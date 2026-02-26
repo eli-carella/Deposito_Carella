@@ -30,10 +30,10 @@ vendite = np.random.randint(10, 100, n)
 
 #dizionario con colonne np array create
 dataset_diz = {
-'Prodotto': prodotti_random,
-'Vendite': vendite,
-'Città': citta_random,
-'Data': dates
+    'Prodotto': prodotti_random,
+    'Vendite': vendite,
+    'Città': citta_random,
+    'Data': dates
 }
 
 df = pd.DataFrame(dataset_diz)
