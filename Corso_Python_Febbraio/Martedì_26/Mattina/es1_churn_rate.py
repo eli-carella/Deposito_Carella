@@ -56,7 +56,7 @@ df['Churn'].fillna(df['Churn'].mode()[0], inplace=True)
 df = df[(df['Età'] >= 0)]
 df = df[(df['Tariffa_Mensile'] > 0) & (df['Tariffa_Mensile'] <= 200)]
 df = df[df['Durata_Abbonamento'] >= 0]
-df = df[df['Servizio_Clienti_Contatti'] >= 0]
+df = df[df['Servizio_Clienti_Contatti'] >= 0 ]
 
 #ricontrollo valori nulli
 print(df.value_counts())
@@ -73,7 +73,7 @@ df['Costo_per_GB'] = np.where(
 print('\n',df[['Tariffa_Mensile','Dati_Consumati','Costo_per_GB']].head())
 
 
-#stampa valori medi in base al churn
+# stampa valori medi in base al churn
 print('\n Valori medi in base al churn')
 print(
     df.groupby('Churn')[
@@ -89,7 +89,7 @@ corr_matrix = df.corr()
 #print(corr_matrix)
 print('\n Correlazione con Tasso abbandono =1')
 print(corr_matrix['Churn'].sort_values(ascending=False))
-#Rischio churn:
+# Rischio churn:
 # clienti giovani, con basso consumo dati, pochi mesi di abbonamento, costi per GB alti, molti contatti con il servizio clienti.
 #Costo_per_GB e Servizio_Clienti_Contatti possono essere features per churn
 
@@ -131,7 +131,6 @@ model.fit(X_train, y_train)
 # predizione
 y_pred = model.predict(X_test)
 
-
 ### valutazione modello
 # Accuracy pred_corrette/totale
 acc = accuracy_score(y_test, y_pred)
@@ -148,3 +147,4 @@ print(f"AUC: {auc_score:.3f}")
 #cm = confusion_matrix(y_test, y_pred)
 #print("\nConfusion Matrix:")
 #print(cm)
+
