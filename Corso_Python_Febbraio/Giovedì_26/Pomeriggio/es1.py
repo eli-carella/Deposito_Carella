@@ -51,15 +51,15 @@ plt.xlabel('Data')
 plt.ylabel('Temperatura (°C)')
 
 # Griglia e legenda
-plt.grid(True, linestyle='--', alpha=0.6)
+plt.grid(linestyle='--', alpha=0.6)
 plt.legend()
 
 plt.xticks(rotation=45) #rotazione etichetta data
 
 # Mostra il grafico
 plt.tight_layout()
+plt.savefig('scatter_plot.png')
 plt.show()
-
 
 
 ### Istogramma
@@ -75,4 +75,5 @@ plt.ylabel('Frequenza')
 
 # Griglia
 plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.savefig('histo.png')
 plt.show()
