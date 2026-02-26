@@ -81,11 +81,11 @@ print(
     ].mean()
 )
 
-# 1 = cliente che ha lasciato, 0 = cliente fedele.
+# 1 = cliente che ha abbandonato, 0 = cliente fedele.
 df['Churn'] = df['Churn'].map({'No': 0, 'Sì': 1})
 
 #correlazione con churn per capire quale feature influenza l'abbandono
-corr_matrix = df.corr(numeric_only=True)
+corr_matrix = df.corr()
 #print(corr_matrix)
 print('\n Correlazione con Tasso abbandono =1')
 print(corr_matrix['Churn'].sort_values(ascending=False))
@@ -107,16 +107,44 @@ df[numerical_cols] = (df[numerical_cols] - df[numerical_cols].min()) / (df[numer
 
 # Correlazione di tutte le features
 corr_matrix = df[numerical_cols].corr()
-print('\n Correlazione tutte le features', corr_matrix)
+print('\n Matrice di correlazione features \n', corr_matrix)
 
 
-
-'''
 ### modello ML
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, roc_auc_score
 
+# Preparazione features e target
+X = df[numerical_cols].values
+y = df['Churn'].values
+
+# Divisione train/test (70% train, 30% test) con stratificazione
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+
+#Creazione e training del modello
 model = LogisticRegression()
 model.fit(X_train, y_train)
-'''
+
+# predizione
+y_pred = model.predict(X_test)
+
+
+### valutazione modello
+# Accuracy pred_corrette/totale
+acc = accuracy_score(y_test, y_pred)
+print(f"\nAccuracy: {acc:.2f}")
+
+# Predizione probabilità sul test set
+y_prob = model.predict_proba(X_test)[:,1]  # probabilità di churn = 1
+
+# Calcolo AUC  la capacità del modello di differenziare correttamente le due classi (churn/no churn).
+auc_score = roc_auc_score(y_test, y_prob)
+print(f"AUC: {auc_score:.3f}")
+
+# Confusion Matrix
+#cm = confusion_matrix(y_test, y_pred)
+#print("\nConfusion Matrix:")
+#print(cm)
