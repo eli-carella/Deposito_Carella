@@ -42,20 +42,15 @@ print(f"Temperatura media: {temp_mean:.2f}")
 print(f"Mediana delle temperature: {temp_median}")
 
 plt.figure(figsize=(12, 6))
-
 # Grafico lineare delle temperature
 plt.plot(df['Date'], df['Temperature'], marker='o', linestyle='-', color='tab:blue', label='Temperatura')
-
 plt.title('Temperature giornaliere Febbraio 2026')
 plt.xlabel('Data')
 plt.ylabel('Temperatura (°C)')
-
 # Griglia e legenda
 plt.grid(linestyle='--', alpha=0.6)
 plt.legend()
-
 plt.xticks(rotation=45) #rotazione etichetta data
-
 # Mostra il grafico
 plt.tight_layout()
 plt.savefig('scatter_plot.png')
@@ -64,16 +59,19 @@ plt.show()
 
 ### Istogramma
 plt.figure(figsize=(10, 6))
-
 # Creazione dell'istogramma
 plt.hist(df['Temperature'], bins=15, color='skyblue', edgecolor='black')  # bins = numero di intervalli
-
 # Titolo e etichette
 plt.title('Distribuzione delle temperature Febbraio 2026')
 plt.xlabel('Temperatura (°C)')
 plt.ylabel('Frequenza')
-
 # Griglia
 plt.grid(axis='y', linestyle='--', alpha=0.7)
+# Linee verticali per le statistiche
+plt.axvline(temp_max, color='red', linestyle='--', linewidth=1, label=f'Max: {temp_max}')
+plt.axvline(temp_min, color='blue', linestyle='--', linewidth=1, label=f'Min: {temp_min}')
+plt.axvline(temp_mean, color='orange', linestyle='-', linewidth=1, label=f'Media: {temp_mean:.2f}')
+plt.axvline(temp_median, color='green', linestyle='-', linewidth=1, label=f'Mediana: {temp_median}')
+plt.legend()
 plt.savefig('histo.png')
 plt.show()
