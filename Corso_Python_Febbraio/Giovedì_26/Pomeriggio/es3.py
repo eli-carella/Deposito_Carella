@@ -28,4 +28,42 @@ visitatori = np.random.normal(media, dev_std, giorni)
 trend = 1 + 0.01 * np.arange(giorni) # crescita 1% al giorno
 visitatori_trend = visitatori * trend
 
-np.arange(365)
+
+
+
+# 3. Analisi dei dati: media e deviazione standard mensile
+media_mensile = df.resample("M").mean()
+dev_std_mensile = df.resample("M").std()
+
+print("Media mensile visitatori:")
+print(media_mensile)
+print("\nDeviazione standard mensile:")
+print(dev_std_mensile)
+
+# 4. Visualizzazione dei dati
+
+# 🔹 Calcolo media mobile a 7 giorni
+df["Media Mobile 7gg"] = df["Visitatori"].rolling(window=7).mean()
+
+# Grafico 1: Visitatori giornalieri + media mobile
+plt.figure(figsize=(12, 5))
+plt.plot(df.index, df["Visitatori"], label="Visitatori giornalieri")
+plt.plot(df.index, df["Media Mobile 7gg"], color='red', linewidth=2, label="Media mobile 7 giorni")
+plt.title("Visitatori Giornalieri con Media Mobile")
+plt.xlabel("Data")
+plt.ylabel("Numero di visitatori")
+plt.legend()
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+# Grafico 2: Media mensile dei visitatori
+plt.figure(figsize=(10, 4))
+plt.plot(media_mensile.index, media_mensile["Visitatori"], marker='o', linestyle='-')
+plt.title("Media Mensile dei Visitatori")
+plt.xlabel("Mese")
+plt.ylabel("Numero medio di visitatori")
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
