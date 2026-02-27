@@ -27,14 +27,16 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+
 date_2024 = pd.date_range(start='2024-01-01', end='2024-12-31')
 giorni=np.arange(1,367)
 #print(giorni)
-'''
+
 nvisitatori=np.random.normal(2000,500,len(giorni))
 #print(nvisitatori)
 incremento=0.1
 nvisitatori=nvisitatori*(1+incremento*giorni)
+
 '''
 num_giorni = len(giorni)#365
 nvisitatori = np.random.normal(2000, 500, num_giorni)
@@ -44,11 +46,7 @@ incremento = 0.1  # +10% nell'anno
 #fattore = 1 + incremento * (np.arange(num_giorni)/num_giorni)
 fattore = (1 + incremento) ** (giorni / len(giorni))
 nvisitatori = nvisitatori * fattore
-
-'''df=pd.DataFrame({
-    'giorni': giorni,
-    'nvisitatori':nvisitatori
-})'''
+'''
 
 nvisitatori = nvisitatori.astype(int)
 print(nvisitatori.dtype)
